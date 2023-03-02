@@ -158,6 +158,7 @@ namespace CRUD
             txtDescripcion.Text = "";
             txtPrecioPublico.Text = "";
             txtExistencias.Text = "";
+            txtId.Text = "";
         }        
     }
 }

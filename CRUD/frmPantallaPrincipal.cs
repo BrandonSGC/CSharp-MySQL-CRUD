@@ -32,7 +32,6 @@ namespace CRUD
             conexionBD.Open();
             try
             {
-
                 MySqlCommand comando = new MySqlCommand(sql, conexionBD);
                 
                 comando.ExecuteNonQuery(); // Ejecutamos el comando.
@@ -123,6 +122,30 @@ namespace CRUD
             }
         }
 
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            String id = txtId.Text;
+
+            string sql = $"DELETE FROM producto WHERE id = {id}";
+            MySqlConnection conexionBD = Conexion.conexion();
+            conexionBD.Open();
+            try
+            {
+                MySqlCommand comando = new MySqlCommand(sql, conexionBD);
+                comando.ExecuteNonQuery(); // Ejecutamos el comando.
+                MessageBox.Show("Registro eliminado con éxito");
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show($"Error al eliminar: {ex}");
+            }
+            finally
+            {
+                conexionBD.Close();
+                limpiar();
+            }
+        }
+
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             limpiar();
@@ -135,6 +158,6 @@ namespace CRUD
             txtDescripcion.Text = "";
             txtPrecioPublico.Text = "";
             txtExistencias.Text = "";
-        }
+        }        
     }
 }

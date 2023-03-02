@@ -1,6 +1,6 @@
 ﻿namespace CRUD
 {
-    partial class Form1
+    partial class frmPantallaPrincipal
     {
         /// <summary>
         /// Required designer variable.

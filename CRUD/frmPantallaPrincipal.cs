@@ -101,5 +101,36 @@ namespace CRUD
             txtPrecioPublico.Text = "";
             txtExistencias.Text = "";
         }
+
+        private void btnActualizar_Click(object sender, EventArgs e)
+        {
+            String id = txtId.Text;
+            String codigo = txtCodigo.Text;
+            String nombre = txtNombre.Text;
+            String descripcion = txtDescripcion.Text;
+            double precio_publico = double.Parse(txtPrecioPublico.Text);
+            int existencias = int.Parse(txtExistencias.Text);
+
+            // Creamos la transaccion que queramos.
+            string sql = $"UPDATE producto SET codigo = '{codigo}', nombre = '{nombre}', descripcion = '{descripcion}', precio_publico = '{precio_publico}', existencias = {existencias} WHERE id = {id}";
+            MySqlConnection conexionBD = Conexion.conexion();
+            conexionBD.Open();
+            try
+            {
+
+                MySqlCommand comando = new MySqlCommand(sql, conexionBD);
+                comando.ExecuteNonQuery(); // Ejecutamos el comando.
+                MessageBox.Show("Registro Actualizado");
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show($"Error al Actualizar: {ex}");
+            }
+            finally
+            {
+                conexionBD.Close();
+                limpiar();
+            }
+        }
     }
 }

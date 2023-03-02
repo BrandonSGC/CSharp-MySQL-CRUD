@@ -92,16 +92,7 @@ namespace CRUD
                 conexionBD.Close();
             }
         }
-        
-        private void limpiar()
-        {
-            txtCodigo.Text = "";
-            txtNombre.Text = "";
-            txtDescripcion.Text = "";
-            txtPrecioPublico.Text = "";
-            txtExistencias.Text = "";
-        }
-
+                
         private void btnActualizar_Click(object sender, EventArgs e)
         {
             String id = txtId.Text;
@@ -117,7 +108,6 @@ namespace CRUD
             conexionBD.Open();
             try
             {
-
                 MySqlCommand comando = new MySqlCommand(sql, conexionBD);
                 comando.ExecuteNonQuery(); // Ejecutamos el comando.
                 MessageBox.Show("Registro Actualizado");
@@ -131,6 +121,20 @@ namespace CRUD
                 conexionBD.Close();
                 limpiar();
             }
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            limpiar();
+        }
+
+        private void limpiar()
+        {
+            txtCodigo.Text = "";
+            txtNombre.Text = "";
+            txtDescripcion.Text = "";
+            txtPrecioPublico.Text = "";
+            txtExistencias.Text = "";
         }
     }
 }
